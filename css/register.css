@@ -1,0 +1,232 @@
+/* ─── Register Steps Indicator ─── */
+.reg-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 32px;
+}
+.reg-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.reg-step span {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.reg-step.active span { color: var(--text); font-weight: 600; }
+.reg-step.done span   { color: var(--success); }
+
+.reg-step-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: all 0.3s;
+}
+.reg-step.active .reg-step-num {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.reg-step.done .reg-step-num {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+.reg-step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  min-width: 60px;
+  max-width: 120px;
+  margin-bottom: 22px;
+}
+
+/* ─── Step 1 Camera ─── */
+.reg-two-col {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+  align-items: start;
+}
+.camera-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+.preview-card { margin-bottom: 16px; }
+.photo-preview {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--bg);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.photo-preview img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+.preview-placeholder { font-size: 28px; line-height: 1.8; }
+.tips-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+.tips-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── Step 2 Form ─── */
+.section-title {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group-full { grid-column: 1 / -1; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--text); }
+.required { color: var(--danger); }
+.form-input {
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(26,25,22,0.07);
+}
+.form-input.error { border-color: var(--danger); }
+.form-select { appearance: none; cursor: pointer; }
+.field-error { font-size: 12px; color: var(--danger); min-height: 16px; }
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+/* ─── Step 3 Confirm ─── */
+.confirm-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.confirm-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.confirm-photo {
+  width: 160px; height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+}
+.confirm-photo-label { font-size: 12px; color: var(--text-muted); }
+.confirm-details { display: flex; flex-direction: column; gap: 10px; }
+.confirm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding: 8px 12px;
+  background: var(--bg);
+  border-radius: 6px;
+}
+.confirm-row span { color: var(--text-muted); }
+.confirm-row strong { font-weight: 600; }
+
+/* ─── Success ─── */
+.success-card {
+  text-align: center;
+  padding: 56px 40px;
+}
+.success-icon {
+  width: 72px; height: 72px;
+  background: var(--success-bg);
+  color: var(--success);
+  border-radius: 50%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border: 2px solid var(--success);
+  animation: popIn 0.4s ease;
+}
+@keyframes popIn {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.success-title {
+  font-family: var(--font-head);
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.success-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+.success-detail {
+  display: inline-flex;
+  gap: 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 28px;
+  margin-bottom: 28px;
+  font-size: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.success-detail span { color: var(--text-muted); }
+.success-detail strong { font-weight: 600; }
+.success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ─── Responsive ─── */
+@media (max-width: 700px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .reg-two-col { grid-template-columns: 1fr; }
+  .confirm-grid { grid-template-columns: 1fr; }
+  .confirm-photo-wrap { flex-direction: row; align-items: flex-start; }
+  .reg-step span { display: none; }
+  .reg-step-line { min-width: 30px; }
+}
