@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face Attendance - Register</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dark.css" />
+  <link rel="stylesheet" href="css/register.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="logo-box">
+        <img src="assets/icons/logo.png" alt="Face Attendance Logo" class="logo-icon">
+      </div>
+      <span class="brand-name">Face Attendance</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html"     class="nav-link"><span class="icon">
+        <img src="assets/icons/home.png" alt="home">
+      </span> Home</a>
+      <a href="dashboard.html" class="nav-link"><span class="icon">
+        <img src="assets/icons/dashboard.png" alt="dashboard">
+      </span> Dashboard</a>
+      <!-- <a href="help.html" class="nav-link"><span class="icon">?</span> Help</a> -->
+    </div>
+  </nav>
+
+  <main class="main-container">
+
+    <div class="page-header">
+      <h1 class="page-title">Register New User</h1>
+      <p class="page-sub">Fill in the details and capture your face to register</p>
+    </div>
+
+    <!-- Steps indicator -->
+    <div class="reg-steps">
+      <div class="reg-step active" id="step1Ind">
+        <div class="reg-step-num">1</div>
+        <span>Capture Face</span>
+      </div>
+      <div class="reg-step-line"></div>
+      <div class="reg-step" id="step2Ind">
+        <div class="reg-step-num">2</div>
+        <span>Personal Info</span>
+      </div>
+      <div class="reg-step-line"></div>
+      <div class="reg-step" id="step3Ind">
+        <div class="reg-step-num">3</div>
+        <span>Confirm</span>
+      </div>
+    </div>
+
+    <!-- ══ STEP 1: Camera ══ -->
+    <div class="reg-panel" id="panelStep1">
+        <div class="reg-two-col">
+
+        <!-- Camera -->
+        <div class="card camera-card">
+          <div class="camera-frame" id="regCameraFrame">
+            <video id="regVideo" autoplay playsinline></video>
+            <div class="scan-corners">
+              <span class="corner tl"></span><span class="corner tr"></span>
+              <span class="corner bl"></span><span class="corner br"></span>
+            </div>
+            <div class="scan-line" id="regScanLine"></div>
+            <div class="camera-label">Position your face in the frame</div>
+          </div>
+
+          <div class="camera-actions">
+            <!-- <a href="index.html" class="btn btn-outline">Cancel</a> -->
+            <button class="btn btn-primary" id="captureBtn" onclick="capturePhoto()">
+              <span class="btn-icon">◉</span> Capture Photo
+            </button>
+          </div>
+        </div>
+
+        <!-- Preview + tips -->
+        <div class="cap-sidebar">
+          <div class="card preview-card">
+            <h4 class="section-title">Photo Preview</h4>
+            <div class="photo-preview" id="photoPreview">
+              <span class="preview-placeholder">📷<br/>No photo yet</span>
+            </div>
+            <canvas id="regCanvas" style="display:none;"></canvas>
+            <button class="btn btn-outline btn-full" id="retakeBtn" style="display:none;" onclick="retakePhoto()">
+              ↺ Retake
+            </button>
+          </div>
+
+          <div class="card tips-card">
+            <h4 class="tips-title">📌 Tips for best results</h4>
+            <ul class="tips-list">
+              <li>✔ Good lighting on your face</li>
+              <li>✔ Look directly at the camera</li>
+              <li>✔ Remove glasses if possible</li>
+              <li>✔ Neutral expression</li>
+              <li>✘ Avoid strong backlighting</li>
+            </ul>      
+          </div>
+          <div class="form-actions">
+            <a href="index.html" class="btn btn-outline">Cancel</a>
+            <button class="btn btn-primary" onclick="goStep2()">
+              Next: Personal Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ STEP 2: Form ══ -->
+    <div class="reg-panel" id="panelStep2" style="display:none;">
+      <div class="card">
+        <h3 class="section-title">Personal Information</h3>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="inputName" class="form-input" placeholder="e.g. Ahmed Mohamed" />
+            <span class="field-error" id="errName"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Student ID <span class="required">*</span></label>
+            <input type="text" id="inputStudentId" class="form-input" placeholder="e.g. 211500633" />
+            <span class="field-error" id="errStudentId"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="inputEmail" class="form-input" placeholder="e.g. ahmed@gmail.com" />
+            <span class="field-error" id="errEmail"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number</label> <span class="required">*</span></label>
+            <input type="tel" id="inputPhone" class="form-input" placeholder="e.g. 01012345678" />
+          </div>
+
+          <div class="form-group form-group-full">
+            <label class="form-label">Department / Class</label> <span class="required">*</span></label>
+            <select id="inputDept" class="form-input form-select">
+              <option value="">- Select Department -</option>
+              <option>Electrical Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Civil Engineering</option>
+              <option>Architecture Engineering</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+          <div class="form-actions">
+            <button class="btn btn-outline" onclick="goStep1()">Back</button>
+            <button class="btn btn-primary" onclick="goStep3()">
+              Next: Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+
+    <!-- ══ STEP 3: Confirm ══ -->
+    <div class="reg-panel" id="panelStep3" style="display:none;">
+      <div class="card confirm-card">
+        <h3 class="section-title">Confirm Registration</h3>
+        <p class="page-sub" style="margin-bottom:24px;">Please review before submitting</p>
+
+        <div class="confirm-grid">
+          <div class="confirm-photo-wrap">
+            <img id="confirmPhoto" src="" alt="Face" class="confirm-photo"/>
+            <span class="confirm-photo-label">Captured Photo</span>
+          </div>
+          <div class="confirm-details">
+            <div class="confirm-row"><span>Full Name</span>    <strong id="cName">—</strong></div>
+            <div class="confirm-row"><span>Student ID</span>   <strong id="cStudentId">—</strong></div>
+            <div class="confirm-row"><span>Email</span>        <strong id="cEmail">—</strong></div>
+            <div class="confirm-row"><span>Phone</span>        <strong id="cPhone">—</strong></div>
+            <div class="confirm-row"><span>Department</span>   <strong id="cDept">—</strong></div>
+            <div class="confirm-row"><span>Registered On</span><strong id="cDate">—</strong></div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-outline" onclick="goStep2()">← Edit Personal Info</button>
+          <button class="btn btn-primary" id="submitBtn" onclick="submitRegistration()">
+            <span class="btn-icon">✔</span> Register Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SUCCESS ══ -->
+    <div class="reg-panel" id="panelSuccess" style="display:none;">
+      <div class="card success-card">
+        <div class="success-icon">✔</div>
+        <h2 class="success-title">Registered Successfully!</h2>
+        <p class="success-sub">The user has been added to the system and will appear in the dashboard.</p>
+        <div class="success-detail" id="successDetail"></div>
+        <div class="success-actions">
+          <a href="index.html"     class="btn btn-outline">← Back to Home</a>
+          <a href="dashboard.html" class="btn btn-primary">View Dashboard →</a>
+          <button class="btn btn-outline" onclick="registerAnother()">+ Register Another</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">© 2026 Face Attendance System</footer>
+  <script src="js/register.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>
