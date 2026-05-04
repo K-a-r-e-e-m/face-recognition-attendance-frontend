@@ -1,0 +1,156 @@
+/* ─── Dark theme variables ─── */
+[data-theme="dark"] {
+  --bg:         #111110;
+  --surface:    #1c1c1a;
+  --border:     #2e2d29;
+  --text:       #f0ede6;
+  --text-muted: #8a8880;
+  --primary:    #f0ede6;
+  --accent:     #d4a853;
+  --success:    #3aab62;
+  --success-bg: #0e2418;
+  --danger:     #e05a4a;
+  --danger-bg:  #2a1210;
+  --scan:       #d4a853;
+  --shadow:     0 2px 12px rgba(0,0,0,0.35);
+  --shadow-md:  0 4px 24px rgba(0,0,0,0.50);
+}
+
+/* ─── Dark: primary button becomes light ─── */
+[data-theme="dark"] .btn-primary {
+  background: var(--text);
+  color: #111110;
+}
+[data-theme="dark"] .btn-primary:hover {
+  background: #d8d4cc;
+}
+
+/* ─── Dark: logo box ─── */
+[data-theme="dark"] .logo-box {
+  background: var(--text);
+  color: #111110;
+}
+
+/* ─── Dark: step active num ─── */
+[data-theme="dark"] .reg-step.active .reg-step-num {
+  background: var(--text);
+  color: #111110;
+}
+
+/* ─── Dark: help nav active link ─── */
+[data-theme="dark"] .help-nav-link.active {
+  background: var(--text);
+  color: #111110;
+}
+
+/* ─── Dark: page stat active btn ─── */
+[data-theme="dark"] .page-btn.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: #111110;
+}
+
+/* ─── Dark: callouts ─── */
+[data-theme="dark"] .callout-warning {
+  background: #2a2010;
+  color: #d4a853;
+}
+[data-theme="dark"] .callout-info {
+  background: #0d1f2d;
+  color: #5ab0e8;
+}
+
+/* ─── Dark: guide num ─── */
+[data-theme="dark"] .guide-num {
+  background: var(--text);
+  color: #111110;
+}
+
+/* ─── Dark: success icon ─── */
+[data-theme="dark"] .success-icon {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success);
+}
+
+/* ─── Dark: video feed corners ─── */
+[data-theme="dark"] .corner { border-color: var(--accent); }
+
+/* ─── Dark: skeleton ─── */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, #2e2d29 25%, #3a3935 50%, #2e2d29 75%);
+  background-size: 200% 100%;
+}
+
+/* ─── Dark: input autofill ─── */
+[data-theme="dark"] input:-webkit-autofill,
+[data-theme="dark"] input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #1c1c1a inset !important;
+  -webkit-text-fill-color: #f0ede6 !important;
+}
+
+/* ─── Dark: faq code ─── */
+[data-theme="dark"] .faq-body code {
+  background: #2e2d29;
+  color: #d4a853;
+}
+
+/* ─── Smooth theme transition ─── */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease;
+}
+/* but don't animate layout-affecting props */
+.btn, .nav-link, .tab, .page-btn, .faq-item summary {
+  transition: background-color 0.2s, border-color 0.2s, color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+/* ─── Theme toggle button style ─── */
+.theme-toggle {
+  font-size: 16px !important;
+  padding: 6px 10px !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: var(--radius-sm) !important;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.theme-toggle:hover {
+  background: var(--bg) !important;
+}
+/* 1. Invert normal icons in dark mode */
+[data-theme="dark"] .icon img,
+[data-theme="dark"] .btn-icon img,
+[data-theme="dark"] .step-icon img,
+[data-theme="dark"] .step-arrow img,
+[data-theme="dark"] .search-icon img {
+    filter: invert(1) brightness(1.5);
+}
+[data-theme="dark"] .stat-icon img {
+    filter: invert(1) brightness(1.5);
+}
+
+/* 2. Icons that are already inverted (like btn-icon-invert) */
+/* Remove the effect in dark mode so they do not become dark again */
+[data-theme="dark"] .btn-icon-invert img {
+    filter: none !important; 
+}
+
+/* 3. Fix camera and frame colors in dark mode */
+[data-theme="dark"] .camera-frame {
+    background: #000;
+    border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .camera-label {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 4. Fix Result Avatar (dotted circle) */
+[data-theme="dark"] .result-avatar {
+    background: var(--surface);
+    border-color: var(--border);
+}
