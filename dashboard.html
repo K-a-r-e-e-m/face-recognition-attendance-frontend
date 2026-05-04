@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face Attendance - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dark.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="logo-box">
+        <img src="assets/icons/logo.png" alt="Face Attendance Logo" class="logo-icon">
+      </div>
+      <span class="brand-name">Face Attendance</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link"><span class="btn-icon">
+        <img src="assets/icons/home.png" alt="scan">
+      </span>Home
+    </a>
+      <!-- <a href="help.html" class="nav-link"><span class="icon">?</span> Help</a> -->
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-container">
+
+    <!-- Header -->
+    <div class="dash-header">
+      <div>
+        <h1 class="page-title">Attendance Dashboard</h1>
+        <p class="page-sub">View attendance records</p>
+      </div>
+      <div class="date-picker-wrapper">
+        <span class="icon">
+          <img src="assets/icons/calendar.png" alt="calendar">
+        </span>
+        <input type="date" id="datePicker" class="date-picker" onchange="loadAttendance()"/>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <img src="assets/icons/total.png" alt="total">
+        </div>
+        <div class="stat-number" id="statTotal">—</div>
+        <div class="stat-label">Total Students</div>
+      </div>
+      <div class="stat-card stat-present">
+        <div class="stat-icon">
+          <img src="assets/icons/check.png" alt="present">
+        </div>
+        <div class="stat-number" id="statPresent">—</div>
+        <div class="stat-label">Present Today</div>
+      </div>
+      <div class="stat-card stat-absent">
+        <div class="stat-icon">
+          <img src="assets/icons/delete.png" alt="absent">
+        </div>
+        <div class="stat-number" id="statAbsent">—</div>
+        <div class="stat-label">Absent Today</div>
+      </div>
+      <div class="stat-card stat-time">
+        <div class="stat-icon">
+          <img src="assets/icons/clock.png" alt="time">
+        </div>
+        <div class="stat-number" id="statTime">—</div>
+        <div class="stat-label">Last Updated</div>
+      </div>
+    </div>
+
+    <!-- Table Card -->
+    <div class="card table-card">
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <!-- <button class="tab active" id="tabMy" onclick="switchTab('my')">👤 My Attendance</button> -->
+        <h4>👥 All Students</h4>
+      </div>
+
+      <!-- Controls -->
+      <div class="table-controls">
+        <div class="search-wrapper">
+          <span class="search-icon">
+            <img src="assets/icons/search.png" alt="search">
+          </span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search by name..." oninput="filterTable()"/>
+        </div>
+        <select class="filter-select" id="statusFilter" onchange="filterTable()">
+          <option value="">All Status</option>
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <table class="att-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Time</th>
+              <th>Status</th>
+              <!-- <th>Options</th> -->
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+
+    </div>
+
+    <!-- Export to Excel or PDF -->
+    <!-- <div class="card export-card">
+      <div class="export-content">
+        <div>
+          <h3 class="export-title">Export Attendance</h3>
+          <p class="export-desc">Download attendance as Excel or PDF</p>
+        </div>
+        <div class="export-btns">
+          <button class="btn btn-outline" onclick="exportExcel()">
+            <img src="assets/icons/excel.png" alt="Export Excel"> Export Excel
+          </button>
+          <button class="btn btn-outline" onclick="exportPDF()">
+            <img src="assets/icons/pdf.png" alt="Export PDF"> Export PDF
+          </button>
+        </div>
+      </div>
+    </div> -->
+
+  </main>
+
+  <footer class="footer">© 2026 Face Attendance System</footer>
+
+  <script src="js/dashboard.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>
