@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face Attendance - Recognition</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dark.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="logo-box">
+        <img src="assets/icons/logo.png" alt="Face Attendance Logo" class="logo-icon">
+      </div>
+      <span class="brand-name">Face Attendance</span>
+    </div>
+    <div class="nav-links">
+      <a href="dashboard.html" class="nav-link">
+        <span class="icon">
+          <img src="assets/icons/dashboard.png" alt="dashboard">
+        </span> Dashboard
+      </a>
+      <!-- <a href="help.html" class="nav-link"><span class="icon">?</span> Help</a> -->
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-container">
+
+    <div class="page-header">
+      <h1 class="page-title">Face Recognition</h1>
+      <p class="page-sub">Look at the camera and we will recognize you</p>
+    </div>
+
+    <div class="recognition-grid">
+
+      <!-- Camera Card -->
+      <div class="card camera-card">
+        <div class="camera-frame" id="cameraFrame">
+          <video id="videoFeed" autoplay playsinline></video>
+          <canvas id="snapCanvas" style="display:none;"></canvas>
+          <div class="scan-corners">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+          </div>
+          <div class="scan-line" id="scanLine"></div>
+          <div class="camera-label">Position your face in the frame</div>
+        </div>
+      </div>
+
+      <!-- Result Card -->
+      <div class="card result-card">
+        <h3 class="result-title">Recognition Result</h3>
+
+        <div class="result-avatar" id="resultAvatar">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <p class="result-status" id="resultStatus">No face detected</p>
+        <p class="result-hint" id="resultHint">Click the button below to start recognition</p>
+
+        <!-- Recognized info (hidden until found) -->
+        <div class="result-info" id="resultInfo" style="display:none;">
+          <div class="info-row"><span>Name</span><strong id="rName">—</strong></div>
+          <div class="info-row"><span>ID</span><strong id="rId">—</strong></div>
+          <div class="info-row"><span>Time</span><strong id="rTime">—</strong></div>
+          <div class="info-row"><span>Status</span><strong id="rStatus" class="badge">—</strong></div>
+        </div>
+
+        <button class="btn btn-primary btn-full" id="recognizeBtn" onclick="startRecognition()">
+          <span class="btn-icon-invert">
+            <img src="assets/icons/camera1.png" alt="scan">
+          </span>Start Recognition
+        </button>
+
+        <button class="btn btn-outline btn-full" id="retryBtn" style="display:none;" onclick="resetRecognition()">
+          Try Again
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"><span>OR</span></div>
+
+    <!-- Register Section -->
+    <div class="card register-card">
+      <div class="register-content">
+        <div>
+          <h3 class="register-title">New User? Register Your Face</h3>
+          <p class="register-desc">If you are a new user, click the button below to register your face.</p>
+        </div>
+        <button class="btn btn-primary" onclick="goToRegister()">
+          <span class="btn-icon-invert">
+            <img src="assets/icons/register.png" alt="register">
+          </span> Register New User
+        </button>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="card howto-card">
+      <h3 class="howto-title">How it works</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">
+            <img src="assets/icons/camera1.png" alt="camera">
+          </div>
+          <div class="step-arrow">
+            <img src="assets/icons/right-arrow.png" alt="arrow">
+          </div>
+          <p>Look at the camera</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <img src="assets/icons/face-detect.png" alt="face detect">
+          </div>
+          <div class="step-arrow">
+            <img src="assets/icons/right-arrow.png" alt="arrow">
+          </div>
+          <p>We detect your face</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <img src="assets/icons/recognize.png" alt="recognize">
+          </div>
+          <div class="step-arrow">
+            <img src="assets/icons/right-arrow.png" alt="arrow">
+          </div>
+          <p>We recognize you</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <img src="assets/icons/check.png" alt="check">
+          </div>
+          <p>Attendance is marked</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">© 2026 Face Attendance System</footer>
+
+  <script src="js/recognition.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>
+    
